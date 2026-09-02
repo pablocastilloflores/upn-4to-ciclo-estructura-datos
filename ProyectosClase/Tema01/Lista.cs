@@ -18,7 +18,6 @@ namespace Semana01
             primero = null;
             ultimo = null;
         }
-
         public void insertarNodo(int valor)
         {
             if (buscarNodo(valor))
