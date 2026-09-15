@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ListasDobles
 {
     internal class Nodo
-    {
+    {        
         public Nodo (int valor)
         {
             Valor = valor;
@@ -15,7 +15,7 @@ namespace ListasDobles
             Anterior = null;
         }
         public int Valor { get; set; }
-        public Nodo Siguiente{ get; set; }
-        public Nodo Anterior { get; set; }
+        public Nodo? Siguiente { get; set; }
+        public Nodo? Anterior { get; set; }
     }
 }

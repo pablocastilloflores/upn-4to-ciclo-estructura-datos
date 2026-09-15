@@ -78,7 +78,7 @@ namespace ListasDobles
                     else
                     {
                         actual.Anterior.Siguiente = actual.Siguiente;
-                        actual.Siguiente.Anterior.Anterior = actual.Anterior;
+                        actual.Siguiente.Anterior = actual.Anterior;
                     }
                     return true;
                 }
