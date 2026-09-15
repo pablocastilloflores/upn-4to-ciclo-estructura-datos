@@ -28,7 +28,13 @@ namespace ListasDobles
             MessageBox.Show("Número incorrecto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
-
+        private bool obtenerPosicion(out int pos)
+        {
+            if (int.TryParse(txtPosicion.Text, out pos) && pos >= 0)
+                return true;
+            MessageBox.Show("Ingresa un valor correcto", "Información", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
         private void btnInsertar_Click(object sender, EventArgs e)
         {
             if (obtenerValor(out int valor))
@@ -96,6 +102,53 @@ namespace ListasDobles
             lista.limpiar();
             actualizarInterfaz();
             txtValor.Clear();
+        }
+        private void btnRecorridoInverso_Click(object sender, EventArgs e)
+        {
+            lstVisualizacion.Items.Clear();
+            var inverso = lista.ObtenerInverso();
+            if (inverso.Count == 0)
+            {
+                MessageBox.Show("La lista está vacía", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            foreach (int valor in inverso)
+            {
+                lstVisualizacion.Items.Add($"<- [ {valor} ] -> (Inverso)");
+            }
+        }
+
+        private void btnInsertarPos_Click(object sender, EventArgs e)
+        {
+            if (obtenerValor(out int valor) && obtenerPosicion(out int pos))
+            {
+                if (lista.insertarPosicion(valor, pos))
+                {
+                    actualizarInterfaz();
+                    txtValor.Clear();
+                    txtPosicion.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Posición inválida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnEliminarPos_Click(object sender, EventArgs e)
+        {
+            if(obtenerPosicion(out int pos))
+            {
+                if(lista.eliminarPosicion(pos))
+                {
+                    actualizarInterfaz();
+                    txtValor.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("No se puede eliminar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

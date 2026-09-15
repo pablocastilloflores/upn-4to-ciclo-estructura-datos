@@ -121,5 +121,106 @@ namespace ListasDobles
             cabeza = null;
             cola = null;
         }
+        public List<int> ObtenerInverso()
+        {
+            List<int> elementos = new List<int>();
+            Nodo? actual = cola;
+
+            while (actual != null)
+            {
+                elementos.Add(actual.Valor);
+                actual = actual.Anterior;
+            }
+            return elementos;
+        }
+        public int obtenerTamanio()
+        {
+            int contador = 0;
+            Nodo? actual = cabeza;
+
+            while(actual != null)
+            {
+                contador++;
+                actual = actual.Siguiente;
+            }
+            return contador;
+        }
+        public bool insertarPosicion(int valor, int pos)
+        {
+            int tamanio = obtenerTamanio();
+
+            if (pos < 0 || pos > tamanio)
+                return false;
+
+            if(pos == 0)
+            {
+                insertarInicio(valor);
+                return true;
+            }
+
+            if(pos == tamanio)
+            {
+                insertarFinal(valor);
+                return true;
+            }
+
+            //Insertar en medio
+
+            Nodo? nuevo = new Nodo(valor);
+            Nodo? actual = cabeza;
+
+            //Avanzar hasta el nodo anterior donde se insertará
+            for (int i = 0; i < pos - 1; i++)
+            {
+                actual = actual!.Siguiente;
+            }
+            //Para los nodos que salen del nuevo
+            nuevo.Siguiente = actual!.Siguiente;
+            nuevo.Anterior = actual;
+
+            //Para los nodos que van hacia nuevo
+            actual.Siguiente!.Anterior = nuevo;
+            actual.Siguiente = nuevo;
+            return true;
+        }
+        public bool eliminarPosicion(int pos)
+        {
+            int tamanio = obtenerTamanio();
+            if(cabeza == null || pos < 0 || pos > tamanio)
+                return false;
+
+            //Eliminar la cabeza
+            if(pos == 0)
+            {
+                if(cabeza == cola)
+                {
+                    cabeza = null;
+                    cola = null;
+                }
+                else
+                {
+                    cabeza = cabeza.Siguiente;
+                    cabeza!.Anterior = null;
+                }
+                return true;
+            }
+
+            //Eliminar la cola
+            if(pos == tamanio -1)
+            {
+                cola = cola!.Anterior;
+                cola!.Siguiente = null;
+                return true;
+            }
+            //Eliminar posición intermedia
+            Nodo? actual = cabeza;
+            for (int i = 0; i < pos; i++)
+            {
+                actual = actual!.Siguiente;
+            }
+            actual!.Anterior!.Siguiente = actual.Siguiente;
+            actual.Siguiente!.Anterior = actual.Anterior;
+            return true;
+        }
     }
 }

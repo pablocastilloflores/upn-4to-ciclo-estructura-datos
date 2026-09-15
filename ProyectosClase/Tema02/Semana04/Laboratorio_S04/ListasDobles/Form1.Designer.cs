@@ -37,13 +37,20 @@
             btnLimpiar = new Button();
             lstVisualizacion = new ListBox();
             txtValor = new TextBox();
+            btnRecorridoInverso = new Button();
+            groupBox1 = new GroupBox();
+            txtPosicion = new TextBox();
+            btnEliminarPos = new Button();
+            btnInsertarPos = new Button();
+            label3 = new Label();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label1.Location = new Point(348, 28);
+            label1.Location = new Point(261, 28);
             label1.Name = "label1";
             label1.Size = new Size(148, 30);
             label1.TabIndex = 0;
@@ -51,7 +58,7 @@
             // 
             // btnInsertar
             // 
-            btnInsertar.Location = new Point(445, 126);
+            btnInsertar.Location = new Point(333, 126);
             btnInsertar.Name = "btnInsertar";
             btnInsertar.Size = new Size(119, 53);
             btnInsertar.TabIndex = 3;
@@ -61,7 +68,7 @@
             // 
             // btnFinal
             // 
-            btnFinal.Location = new Point(445, 185);
+            btnFinal.Location = new Point(333, 185);
             btnFinal.Name = "btnFinal";
             btnFinal.Size = new Size(119, 53);
             btnFinal.TabIndex = 4;
@@ -71,7 +78,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(445, 244);
+            btnEliminar.Location = new Point(333, 244);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(119, 53);
             btnEliminar.TabIndex = 5;
@@ -82,16 +89,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(56, 80);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.Location = new Point(94, 82);
             label2.Name = "label2";
-            label2.Size = new Size(46, 21);
+            label2.Size = new Size(55, 21);
             label2.TabIndex = 7;
-            label2.Text = "Valor";
+            label2.Text = "Valor:";
             // 
             // btnBuscar
             // 
-            btnBuscar.Location = new Point(445, 303);
+            btnBuscar.Location = new Point(333, 303);
             btnBuscar.Name = "btnBuscar";
             btnBuscar.Size = new Size(119, 53);
             btnBuscar.TabIndex = 6;
@@ -101,8 +108,8 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Font = new Font("Segoe UI", 11F);
-            btnLimpiar.Location = new Point(445, 362);
+            btnLimpiar.Font = new Font("Segoe UI", 9F);
+            btnLimpiar.Location = new Point(333, 362);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(119, 53);
             btnLimpiar.TabIndex = 9;
@@ -127,11 +134,73 @@
             txtValor.TabIndex = 12;
             txtValor.Click += txtValor_TextChanged;
             // 
+            // btnRecorridoInverso
+            // 
+            btnRecorridoInverso.Location = new Point(504, 126);
+            btnRecorridoInverso.Name = "btnRecorridoInverso";
+            btnRecorridoInverso.Size = new Size(129, 53);
+            btnRecorridoInverso.TabIndex = 13;
+            btnRecorridoInverso.Text = "Recorrido Inverso";
+            btnRecorridoInverso.UseVisualStyleBackColor = true;
+            btnRecorridoInverso.Click += btnRecorridoInverso_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(txtPosicion);
+            groupBox1.Controls.Add(btnEliminarPos);
+            groupBox1.Controls.Add(btnInsertarPos);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Location = new Point(504, 192);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(129, 223);
+            groupBox1.TabIndex = 14;
+            groupBox1.TabStop = false;
+            // 
+            // txtPosicion
+            // 
+            txtPosicion.Location = new Point(15, 52);
+            txtPosicion.Multiline = true;
+            txtPosicion.Name = "txtPosicion";
+            txtPosicion.Size = new Size(99, 26);
+            txtPosicion.TabIndex = 13;
+            // 
+            // btnEliminarPos
+            // 
+            btnEliminarPos.Location = new Point(15, 152);
+            btnEliminarPos.Name = "btnEliminarPos";
+            btnEliminarPos.Size = new Size(99, 40);
+            btnEliminarPos.TabIndex = 2;
+            btnEliminarPos.Text = "Eliminar";
+            btnEliminarPos.UseVisualStyleBackColor = true;
+            btnEliminarPos.Click += btnEliminarPos_Click;
+            // 
+            // btnInsertarPos
+            // 
+            btnInsertarPos.Location = new Point(15, 96);
+            btnInsertarPos.Name = "btnInsertarPos";
+            btnInsertarPos.Size = new Size(99, 39);
+            btnInsertarPos.TabIndex = 1;
+            btnInsertarPos.Text = "Insertar";
+            btnInsertarPos.UseVisualStyleBackColor = true;
+            btnInsertarPos.Click += btnInsertarPos_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label3.Location = new Point(36, 31);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Posición";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(678, 450);
+            Controls.Add(groupBox1);
+            Controls.Add(btnRecorridoInverso);
             Controls.Add(txtValor);
             Controls.Add(lstVisualizacion);
             Controls.Add(btnLimpiar);
@@ -143,6 +212,8 @@
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -158,5 +229,11 @@
         private Button btnLimpiar;       
         private ListBox lstVisualizacion;
         private TextBox txtValor;
+        private Button btnRecorridoInverso;
+        private Label label3;
+        private Button btnEliminarPos;
+        private Button btnInsertarPos;
+        private TextBox txtPosicion;
+        protected GroupBox groupBox1;
     }
 }
